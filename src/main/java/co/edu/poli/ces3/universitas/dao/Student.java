@@ -11,6 +11,7 @@ public class Student {
     private int level;
     private boolean isMarried;
 
+    public Student(){}
 
     public Student(String name, String lastName, Date birthDay, String mail, int level, boolean isMarried) {
         this.name = name;

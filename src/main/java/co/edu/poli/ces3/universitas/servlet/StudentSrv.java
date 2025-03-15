@@ -77,8 +77,6 @@ public class StudentSrv extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("application/json");
 
-        int idStudent = Integer.parseInt(req.getParameter("id"));
-
         resp.setStatus(HttpServletResponse.SC_CREATED);
         PrintWriter out = resp.getWriter();
 
@@ -87,14 +85,20 @@ public class StudentSrv extends HttpServlet {
         if(req.getParameter("id") == null) {
             out.print(gson.toJson(students));
         }else{
+            int idStudent = Integer.parseInt(req.getParameter("id"));
             Student searchStudent = null;
-            for (Student x: students) {
-                if(x.getId().equals(idStudent) ){
+            for (Student x : students) {
+                if (x.getId() != null && x.getId().equals(idStudent)) {
                     searchStudent = x;
                     break;
                 }
             }
-            out.print(gson.toJson(searchStudent));
+
+            if (searchStudent != null) {
+                out.print(gson.toJson(searchStudent));
+            } else {
+                out.print("{\"error\":\"Estudiante no encontrado\"}");
+            }
         }
         out.flush();
     }
