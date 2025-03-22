@@ -22,6 +22,16 @@ public class Student {
         this.isMarried = isMarried;
     }
 
+    public Student(Integer id, String name, String lastName, Date birthDay, String mail, int level, boolean isMarried) {
+        this.id = id;
+        this.name = name;
+        this.lastName = lastName;
+        this.birthDay = birthDay;
+        this.mail = mail;
+        this.level = level;
+        this.isMarried = isMarried;
+    }
+
     public Integer getId(){
         return id;
     }
@@ -76,5 +86,10 @@ public class Student {
 
     public void setMarried(boolean married) {
         isMarried = married;
+    }
+
+    @Override
+    public String toString() {
+        return this.name + " " + this.lastName;
     }
 }
